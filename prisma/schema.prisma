@@ -1,0 +1,44 @@
+// schema.prisma
+
+generator client {
+  provider = "go run github.com/steebchen/prisma-client-go"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AnimeGenre {
+  SHONEN
+  SPORTS
+  FANTASY
+  HORROR
+  OTHER
+}
+
+model Anime {
+  id       String   @id @default(uuid()) @map("id")
+  title    String   @map("title")
+  genre    AnimeGenre[] @map("genre")
+  activate Boolean  @default(true) @map("activate")
+  createBy String   @map("createBy")
+  updateBy String   @map("updateBy")
+  createAt DateTime @default(now()) @map("createAt")
+  updateAt DateTime @default(now()) @map("updateAt")
+  Character Character[]
+}
+
+model Character {
+  id       String   @id @default(uuid()) @map("id")
+  name     String   @map("name")
+  description String? @map("description")
+  animeId  String   @map("anime_id")
+  activate Boolean  @default(true) @map("activate")
+  createBy String   @map("createBy")
+  updateBy String   @map("updateBy")
+  createAt DateTime @default(now()) @map("createAt")
+  updateAt DateTime @default(now()) @map("updateAt")
+  Anime    Anime    @relation(fields: [animeId], references: [id])
+}
