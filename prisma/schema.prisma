@@ -21,7 +21,7 @@ enum AnimeGenre {
 model Anime {
   id       String   @id @default(uuid()) @map("id")
   title    String   @map("title")
-  genre    AnimeGenre[] @map("genre")
+  genre    AnimeGenre @map("genre")
   activate Boolean  @default(true) @map("activate")
   createBy String   @map("createBy")
   updateBy String   @map("updateBy")
