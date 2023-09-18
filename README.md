@@ -32,23 +32,12 @@ To create a local database using Docker Compose, follow these steps:
    make up
    ```
 
-## # Updating the Database with Prisma db push
+## # Updating the Database with Gorm And run
 
-This guide explains how to update your database schema using the Prisma `db push` command. Prisma is a powerful tool that allows you to define and manage your database schema using a Prisma schema file (`schema.prisma`), and `db push` is used to synchronize your database with the schema defined in this file.
-
-1. **Prisma CLI**: Ensure that you have Prisma CLI installed globally. You can install it using npm or yarn:
-
-   ```bash
-   npm install -g prisma
-   # or
-   yarn global add prisma
-
-2. **Run Prisma** 
-
-   Open your terminal and run the following command to push your schema changes to the database:
-  
-   ```Run Prisma
-   prisma db push
+   ```
+   go run main.go
+   ```
+ 
 
 ## # Clean Code
 
