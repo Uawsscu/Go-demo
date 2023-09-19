@@ -12,9 +12,9 @@ import (
 
 var DB *gorm.DB
 
-func Connect() {
+func ConnectDB() {
 	if err := godotenv.Load(); err != nil {
-		fmt.Println("Error loading .env file")
+		fmt.Println("[database] Error loading .env file")
 	}
 
 	// ----------------------------Database Connection---------------------------------
@@ -26,11 +26,11 @@ func Connect() {
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("failed to connect database")
+		panic("[database] failed to connect database")
 	}
 
 	db.AutoMigrate(&models.Anime{}, &models.Character{})
 
-	fmt.Println("Connected to the PostgreSQL database!")
+	fmt.Println("[database] Connected to PostgreSQL successfully!")
 	DB = db
 }

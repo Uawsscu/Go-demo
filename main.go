@@ -15,7 +15,8 @@ func main() {
 		fmt.Println("Error loading .env file")
 	}
 
-	config.Connect()
+	config.ConnectKafka()
+	config.ConnectDB()
 	router := gin.Default()
 	router.Use(cors.Default())
 	initRoutes(router)

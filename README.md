@@ -22,7 +22,7 @@ To create a local database using Docker Compose, follow these steps:
             POSTGRES_DB: "go_demo"
       ```
 
-3. **Start the Database Container:** In the same directory where your docker-compose.yml file is located,
+3. **Start Container:** In the same directory where your docker-compose.yml file is located,
 
    ```
    docker-compose up -d
@@ -31,6 +31,8 @@ To create a local database using Docker Compose, follow these steps:
    ```
    make up
    ```
+
+4. **Kafka:** You can open Kafka UI at http://localhost:8090/ui  
 
 ## # Updating the Database with Gorm And run
 
@@ -45,3 +47,8 @@ To create a local database using Docker Compose, follow these steps:
    
    ``` clean go sum and go mod
    go mod tidy
+   ``` 
+
+
+
+
