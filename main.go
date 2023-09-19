@@ -25,7 +25,8 @@ func main() {
 
 func initRoutes(r *gin.Engine) {
 	r.GET("/anime/:id", anime.GetAnimeHandler)
-	// r.POST("/anime/test", anime.animePost)
+	r.GET("/anime/demoKafka", anime.TestKafkaDemoCreateHandler)
+	// r.POST("/anime/demoKafka", anime.TestKafkaDemoCreateHandler)
 	// r.DELETE("/anime/delete", anime.animeDELETE)
 	// r.PUT("/anime/update", anime.animeUpdate)
 

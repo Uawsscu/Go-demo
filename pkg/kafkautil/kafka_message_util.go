@@ -3,11 +3,12 @@ package kafkautil
 import (
 	"fmt"
 	"main/config"
+	"os"
 )
 
 func SendMessageCreateAnime(message string) error {
 	fmt.Println("[SendKafkaMessage] topic:CREATE_KAFKA_MSG start....")
-	err := config.SendMessage("CREATE_KAFKA_MSG", message)
+	err := config.SendMessage(os.Getenv("KAFKA_TOPIC_DEMO_CREATE"), message)
 	if err != nil {
 		return err
 	}
@@ -17,7 +18,7 @@ func SendMessageCreateAnime(message string) error {
 
 func SendMessageUpdateAnime(message string) error {
 	fmt.Println("SendMessageUpdateAnime start....")
-	err := config.SendMessage("UPDATE_KAFKA_MSG", message)
+	err := config.SendMessage(os.Getenv("KAFKA_TOPIC_DEMO_UPDATE"), message)
 	if err != nil {
 		return err
 	}
