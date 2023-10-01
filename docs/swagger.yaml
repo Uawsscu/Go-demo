@@ -1,0 +1,52 @@
+definitions:
+  anime.Anime:
+    properties:
+      activate:
+        type: boolean
+      genre:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /anime/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get an anime by its ID
+      parameters:
+      - description: Anime ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/anime.Anime'
+      summary: Get an anime by ID
+      tags:
+      - Animes
+  /anime/demoKafka:
+    get:
+      consumes:
+      - application/json
+      description: Send kafka message
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/anime.Anime'
+      summary: Send kafka message
+      tags:
+      - Kafka Demo
+swagger: "2.0"

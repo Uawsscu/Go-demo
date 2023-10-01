@@ -2,12 +2,19 @@ package anime
 
 import (
 	"fmt"
-	"main/pkg/kafkautil"
+	"go-demo/pkg/kafkautil"
 
 	"github.com/gin-gonic/gin"
 )
 
-// GetAnimeHandler handles GET requests to retrieve an Anime by ID.
+// @Summary Get an anime by ID
+// @Description Get an anime by its ID
+// @Accept json
+// @Produce json
+// @Tags Animes
+// @Param id path string true "Anime ID"
+// @Success 200 {object} Anime "Successful response"
+// @Router /anime/{id} [get]
 func GetAnimeHandler(c *gin.Context) {
 	fmt.Println("GetAnimeHandler start....")
 	animeService := &AnimeService{}
@@ -15,6 +22,13 @@ func GetAnimeHandler(c *gin.Context) {
 	fmt.Println("GetAnimeHandler success....")
 }
 
+// @Summary Send kafka message
+// @Description Send kafka message
+// @Accept json
+// @Produce json
+// @Tags Kafka Demo
+// @Success 200 {object} Anime "Successful response"
+// @Router /anime/demoKafka [get]
 func TestKafkaDemoCreateHandler(c *gin.Context) {
 	fmt.Println("TestKafkaHandler start....")
 	kafkautil.SendMessageCreateAnime("Hello")

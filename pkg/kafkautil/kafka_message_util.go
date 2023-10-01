@@ -2,7 +2,8 @@ package kafkautil
 
 import (
 	"fmt"
-	"main/config"
+	"go-demo/config"
+
 	"os"
 )
 

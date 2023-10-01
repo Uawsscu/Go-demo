@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"main/models"
+	"go-demo/models"
 	"os"
 
 	"github.com/joho/godotenv"

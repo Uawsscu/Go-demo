@@ -1,0 +1,82 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/anime/demoKafka": {
+            "get": {
+                "description": "Send kafka message",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kafka Demo"
+                ],
+                "summary": "Send kafka message",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/anime.Anime"
+                        }
+                    }
+                }
+            }
+        },
+        "/anime/{id}": {
+            "get": {
+                "description": "Get an anime by its ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Animes"
+                ],
+                "summary": "Get an anime by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Anime ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/anime.Anime"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "anime.Anime": {
+            "type": "object",
+            "properties": {
+                "activate": {
+                    "type": "boolean"
+                },
+                "genre": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@ package anime
 
 import (
 	"fmt"
-	"main/config"
+	"go-demo/config"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

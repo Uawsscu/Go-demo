@@ -1,7 +1,20 @@
-# Go-demo
+# Quick Start!!
+Play in Just 2 Steps
+   ```
+   make up
+   ```
+   ```
+   make run
+   ```
+<div style="text-align:center">
 
-## # Create Local Database with Docker Compose
+   ...........................👍 💯 ........................... 
 
+</div>
+<br/>
+
+# Additional Information!!
+## 🐳 Create Local Database with Docker Compose
 To create a local database using Docker Compose, follow these steps: 
 1. **Install Docker Compose:** If you haven't already, make sure you have Docker Compose installed on your system. 
 
@@ -34,14 +47,7 @@ To create a local database using Docker Compose, follow these steps:
 
 4. **Kafka:** You can open Kafka UI at http://localhost:8090/ui  
 
-## # Updating the Database with Gorm And run
-
-   ```
-   go run main.go
-   ```
- 
-
-## # Clean Code
+## 🧹✨ Clean Code
 
    Using 'go mod tidy' will automatically remove unused packages from the go.sum file
    
@@ -50,5 +56,28 @@ To create a local database using Docker Compose, follow these steps:
    ``` 
 
 
+## 🌱 Create Swagger
 
+1. **Set up API for display on Swagger.**
+  ![Alt text](image.png)
 
+2. **Generate docs file.**  
+   ```
+   swag init
+   ```
+   if problem is gennerage docs for swagger
+
+   'zsh: command not found: swag'
+   ```
+   export PATH=$PATH:$(go env GOPATH)/bin 
+   ```
+   ```
+   swag init -g main.go — output docs
+   ```
+
+3. **Run.**  
+   ```
+   go run main.go
+   ```
+4. **Open Swagger API**
+   http://localhost:8080/go-demo/swagger/index.html
