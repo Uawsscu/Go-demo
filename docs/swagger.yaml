@@ -10,6 +10,45 @@ definitions:
       title:
         type: string
     type: object
+  character.Character:
+    properties:
+      activate:
+        type: boolean
+      animeID:
+        type: string
+      createAt:
+        type: string
+      createBy:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updateAt:
+        type: string
+      updateBy:
+        type: string
+    type: object
+  character.CreateCharacterRequest:
+    properties:
+      animeID:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      updateBy:
+        type: string
+    type: object
+  elasticsearch.CreateElasticIndexResponse:
+    properties:
+      index:
+        type: string
+      status:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -49,4 +88,41 @@ paths:
       summary: Send kafka message
       tags:
       - Kafka Demo
+  /characters/create:
+    post:
+      consumes:
+      - application/json
+      description: create character and insert to elasticsearch
+      parameters:
+      - description: Character JSON
+        in: body
+        name: inputCharacter
+        required: true
+        schema:
+          $ref: '#/definitions/character.CreateCharacterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/character.Character'
+      summary: create character and insert to elasticsearch
+      tags:
+      - Characters
+  /elasticsearch/create-character-index:
+    post:
+      consumes:
+      - application/json
+      description: create elastic character_index
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/elasticsearch.CreateElasticIndexResponse'
+      summary: create character index for elasticsearch
+      tags:
+      - Elasticsearch
 swagger: "2.0"

@@ -69,6 +69,63 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/characters/create": {
+            "post": {
+                "description": "create character and insert to elasticsearch",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Characters"
+                ],
+                "summary": "create character and insert to elasticsearch",
+                "parameters": [
+                    {
+                        "description": "Character JSON",
+                        "name": "inputCharacter",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/character.CreateCharacterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/character.Character"
+                        }
+                    }
+                }
+            }
+        },
+        "/elasticsearch/create-character-index": {
+            "post": {
+                "description": "create elastic character_index",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Elasticsearch"
+                ],
+                "summary": "create character index for elasticsearch",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/elasticsearch.CreateElasticIndexResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -85,6 +142,66 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "character.Character": {
+            "type": "object",
+            "properties": {
+                "activate": {
+                    "type": "boolean"
+                },
+                "animeID": {
+                    "type": "string"
+                },
+                "createAt": {
+                    "type": "string"
+                },
+                "createBy": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updateAt": {
+                    "type": "string"
+                },
+                "updateBy": {
+                    "type": "string"
+                }
+            }
+        },
+        "character.CreateCharacterRequest": {
+            "type": "object",
+            "properties": {
+                "animeID": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updateBy": {
+                    "type": "string"
+                }
+            }
+        },
+        "elasticsearch.CreateElasticIndexResponse": {
+            "type": "object",
+            "properties": {
+                "index": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "string"
                 }
             }

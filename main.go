@@ -7,6 +7,8 @@ import (
 
 	_ "go-demo/docs"
 	"go-demo/internal/anime"
+	"go-demo/internal/character"
+	"go-demo/internal/elasticsearch"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
@@ -24,6 +26,7 @@ func main() {
 		fmt.Println("Error loading .env file")
 	}
 
+	config.ConnectElasticSearch()
 	config.ConnectKafka()
 	config.ConnectDB()
 	router := gin.Default()
@@ -39,7 +42,8 @@ func main() {
 func initRoutes(eg *gin.Engine) {
 	eg.GET("/anime/:id", anime.GetAnimeHandler)
 	eg.GET("/anime/demoKafka", anime.TestKafkaDemoCreateHandler)
-	// r.POST("/anime/demoKafka", anime.TestKafkaDemoCreateHandler)
+	eg.POST("/characters/create", character.CreateCharacter)
+	eg.POST("/elasticsearch/create-character-index", elasticsearch.CreateElasticIndexCharacter)
 	// r.DELETE("/anime/delete", anime.animeDELETE)
 	// r.PUT("/anime/update", anime.animeUpdate)
 }

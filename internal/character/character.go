@@ -17,3 +17,10 @@ type Character struct {
 	CreateAt    time.Time `json:"createAt"`
 	UpdateAt    time.Time `json:"updateAt"`
 }
+
+type CreateCharacterRequest struct {
+	Name        string    `json:"name"`
+	Description string    `json:"description"`
+	AnimeID     uuid.UUID `json:"animeID"`
+	UpdateBy    string    `json:"updateBy"`
+}

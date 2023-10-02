@@ -47,7 +47,7 @@ To create a local database using Docker Compose, follow these steps:
 
 4. **Kafka:** You can open Kafka UI at http://localhost:8090/ui  
 
-## 🧹✨ Clean Code
+## 🧹 Clean Code ✨
 
    Using 'go mod tidy' will automatically remove unused packages from the go.sum file
    
@@ -81,3 +81,24 @@ To create a local database using Docker Compose, follow these steps:
    ```
 4. **Open Swagger API**
    http://localhost:8080/go-demo/swagger/index.html
+
+
+## 🌍 Elasticsearch
+
+1. **Create Index**
+   You can call the API '/elasticsearch/create-character-index' to create an Elasticsearch index named 'character-index'.
+
+2. **Insert Data to DB and Elasticsearch**
+   To insert data into both the database and Elasticsearch. You can call the API '/characters/create'
+3. **Check data in elasticsearch**
+   http://localhost:9200/character_index/_search
+   ```
+   {
+      "query": {
+         "match_all": {}
+      }
+   }
+   ```
+
+
+![Alt text](image-1.png)

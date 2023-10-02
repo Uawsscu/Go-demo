@@ -6,12 +6,13 @@ import (
 	"github.com/google/uuid"
 )
 
-type Character struct {
+type FileInfo struct {
 	ID          uuid.UUID `gorm:"default:gen_random_uuid();not null;type:uuid;primary_key;"`
-	Name        string    `gorm:"not null"`
-	FileId      uuid.UUID
+	FileName    string    `gorm:"not null"`
+	Extension   string    `gorm:"not null"`
+	Url         string
 	Description string
-	AnimeId     uuid.UUID `gorm:"not null"`
+	InfoType    string    `gorm:"not null"`
 	Activate    bool      `gorm:"default:true;not null"`
 	CreateBy    string    `gorm:"not null"`
 	UpdateBy    string    `gorm:"not null"`

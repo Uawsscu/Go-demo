@@ -29,8 +29,13 @@ func ConnectDB() {
 		panic("[database] failed to connect database")
 	}
 
-	db.AutoMigrate(&models.Anime{}, &models.Character{})
+	db.AutoMigrate(&models.Anime{}, &models.Character{}, &models.FileInfo{})
+	dropColumn(db)
 
 	fmt.Println("[database] Connected to PostgreSQL successfully!")
 	DB = db
+}
+
+func dropColumn(db *gorm.DB) {
+	db.Migrator().DropColumn(&models.Character{}, "url")
 }
