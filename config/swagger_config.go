@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"go-demo/docs"
+	"log"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -18,4 +19,5 @@ func SwaggerConfig(router *gin.Engine) {
 	docs.SwaggerInfo.BasePath = ""
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 	router.GET("/go-demo/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	log.Printf("[swagger] url: %s/go-demo/swagger/index.html", docs.SwaggerInfo.Host)
 }

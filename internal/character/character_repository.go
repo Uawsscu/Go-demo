@@ -14,11 +14,7 @@ type CharacterRepository struct {
 }
 
 func (cr *CharacterRepository) CreateCharacter(inputCharacter CreateCharacterRequest) (*Character, error) {
-
-	// สร้าง UUID สำหรับ Character ID
 	characterID := uuid.New()
-
-	// สร้าง Character ในฐานข้อมูล
 	character := Character{
 		ID:          characterID,
 		Name:        inputCharacter.Name,
@@ -30,9 +26,7 @@ func (cr *CharacterRepository) CreateCharacter(inputCharacter CreateCharacterReq
 		CreateAt:    time.Now(),
 		UpdateAt:    time.Now(),
 	}
-
 	config.DB.Create(&character)
-
 	return &character, nil
 }
 

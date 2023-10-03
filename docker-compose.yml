@@ -57,3 +57,11 @@ services:
       memlock:
         soft: -1
         hard: -1
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./uploads:/var/www/uploads

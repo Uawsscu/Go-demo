@@ -18,20 +18,20 @@ func ConnectElasticSearch() {
 	// var Elasticsearch client
 	es, err := elasticsearch.NewClient(config)
 	if err != nil {
-		log.Fatalf("Error creating Elasticsearch client: %v", err)
+		log.Fatalf("[elasticsearch] Error creating Elasticsearch client: %v", err)
 	}
 
 	// test connect Elasticsearch
 	res, err := es.Info()
 	if err != nil {
-		log.Fatalf("Error getting Elasticsearch info: %v", err)
+		log.Fatalf("[elasticsearch] Error getting Elasticsearch info: %v", err)
 	}
 	defer res.Body.Close()
 
 	if res.IsError() {
-		log.Fatalf("Elasticsearch error: %s", res.Status())
+		log.Fatalf("[elasticsearch] error: %s", res.Status())
 	}
 
-	fmt.Println("Elasticsearch version:", res.String())
+	fmt.Println("[elasticsearch] :", res.Status())
 	ES = es
 }

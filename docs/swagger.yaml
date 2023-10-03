@@ -49,6 +49,31 @@ definitions:
       status:
         type: string
     type: object
+  file_info.FileInfo:
+    properties:
+      activate:
+        type: boolean
+      createAt:
+        type: string
+      createBy:
+        type: string
+      description:
+        type: string
+      extension:
+        type: string
+      fileName:
+        type: string
+      id:
+        type: string
+      infoType:
+        type: string
+      updateAt:
+        type: string
+      updateBy:
+        type: string
+      url:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -125,4 +150,46 @@ paths:
       summary: create character index for elasticsearch
       tags:
       - Elasticsearch
+  /files/uploadFileImage:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload a file image and store information
+      parameters:
+      - description: File to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: File name
+        in: formData
+        name: fileName
+        type: string
+      - description: File description
+        in: formData
+        name: description
+        type: string
+      - description: Information type
+        enum:
+        - demo/characters
+        - demo/animes
+        in: formData
+        name: infoType
+        required: true
+        type: string
+      - description: Updated by
+        in: formData
+        name: updateBy
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/file_info.FileInfo'
+      summary: Upload a file image
+      tags:
+      - Files
 swagger: "2.0"

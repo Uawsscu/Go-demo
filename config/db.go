@@ -37,5 +37,5 @@ func ConnectDB() {
 }
 
 func dropColumn(db *gorm.DB) {
-	db.Migrator().DropColumn(&models.Character{}, "url")
+	// db.Migrator().DropColumn(&models.Character{}, "url")
 }

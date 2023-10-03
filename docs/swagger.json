@@ -115,6 +115,68 @@
                     }
                 }
             }
+        },
+        "/files/uploadFileImage": {
+            "post": {
+                "description": "Upload a file image and store information",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Upload a file image",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "File to upload",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "File name",
+                        "name": "fileName",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "File description",
+                        "name": "description",
+                        "in": "formData"
+                    },
+                    {
+                        "enum": [
+                            "demo/characters",
+                            "demo/animes"
+                        ],
+                        "type": "string",
+                        "description": "Information type",
+                        "name": "infoType",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Updated by",
+                        "name": "updateBy",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/file_info.FileInfo"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -191,6 +253,44 @@
                     "type": "string"
                 },
                 "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "file_info.FileInfo": {
+            "type": "object",
+            "properties": {
+                "activate": {
+                    "type": "boolean"
+                },
+                "createAt": {
+                    "type": "string"
+                },
+                "createBy": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "extension": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "infoType": {
+                    "type": "string"
+                },
+                "updateAt": {
+                    "type": "string"
+                },
+                "updateBy": {
+                    "type": "string"
+                },
+                "url": {
                     "type": "string"
                 }
             }

@@ -9,6 +9,7 @@ import (
 	"go-demo/internal/anime"
 	"go-demo/internal/character"
 	"go-demo/internal/elasticsearch"
+	"go-demo/internal/file_info"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
@@ -44,6 +45,7 @@ func initRoutes(eg *gin.Engine) {
 	eg.GET("/anime/demoKafka", anime.TestKafkaDemoCreateHandler)
 	eg.POST("/characters/create", character.CreateCharacter)
 	eg.POST("/elasticsearch/create-character-index", elasticsearch.CreateElasticIndexCharacter)
+	eg.POST("/files/uploadFileImage", file_info.UploadFileImage)
 	// r.DELETE("/anime/delete", anime.animeDELETE)
 	// r.PUT("/anime/update", anime.animeUpdate)
 }

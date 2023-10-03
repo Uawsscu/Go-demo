@@ -55,7 +55,6 @@ To create a local database using Docker Compose, follow these steps:
    go mod tidy
    ``` 
 
-
 ## 🌱 Create Swagger
 
 1. **Set up API for display on Swagger.**
@@ -102,3 +101,9 @@ To create a local database using Docker Compose, follow these steps:
 
 
 ![Alt text](image-1.png)
+
+
+
+## 🌄 File and Nginx Configuration
+![Alt text](image_file_req1.jpeg)
+![Alt text](image_file_req2.png)

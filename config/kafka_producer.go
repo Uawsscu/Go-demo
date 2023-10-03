@@ -14,7 +14,7 @@ var (
 
 func ConnectKafka() error {
 	if err := godotenv.Load(); err != nil {
-		fmt.Println("Error loading .env file")
+		fmt.Println("[kafka] Error loading .env file")
 	}
 	kafkaBokers := os.Getenv("KAFKA_BROKERS")
 	fmt.Println("[kafka] bokers:", kafkaBokers)
