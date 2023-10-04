@@ -197,6 +197,12 @@ const docTemplate = `{
                 "activate": {
                     "type": "boolean"
                 },
+                "createAt": {
+                    "type": "string"
+                },
+                "createBy": {
+                    "type": "string"
+                },
                 "genre": {
                     "type": "string"
                 },
@@ -204,6 +210,12 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "title": {
+                    "type": "string"
+                },
+                "updateAt": {
+                    "type": "string"
+                },
+                "updateBy": {
                     "type": "string"
                 }
             }

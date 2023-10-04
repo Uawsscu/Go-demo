@@ -3,11 +3,19 @@ definitions:
     properties:
       activate:
         type: boolean
+      createAt:
+        type: string
+      createBy:
+        type: string
       genre:
         type: string
       id:
         type: string
       title:
+        type: string
+      updateAt:
+        type: string
+      updateBy:
         type: string
     type: object
   character.Character:
