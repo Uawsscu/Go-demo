@@ -1,21 +1,21 @@
 package anime
 
 import (
-	"log"
-
 	"github.com/gin-gonic/gin"
 )
 
 type AnimeService struct{}
 
-func (ar *AnimeService) GetAnimeByID(c *gin.Context) {
-	animeID := c.Param("id")
+func (ar *AnimeService) GetAnimeByID(c *gin.Params) (*Anime, error) {
+	animeID := c.ByName("id")
 
 	animeRepo := &AnimeRepository{}
-	anime, err := animeRepo.GetAnimeByIDGin(c, animeID)
+	anime, err := animeRepo.GetAnimeByIDGin(animeID)
 
 	if err != nil {
-		log.Fatal(err)
+		return anime, err
 	}
-	c.JSON(201, anime)
+
+	return anime, err
+
 }
