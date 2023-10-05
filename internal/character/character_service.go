@@ -2,34 +2,35 @@ package character
 
 import (
 	"encoding/json"
+	"go-demo/internal/anime"
 	"go-demo/internal/elasticsearch"
-
-	"github.com/gin-gonic/gin"
 )
 
 type CharacterService struct{}
 
-func (cs *CharacterService) CreateCharacter(c *gin.Context) {
-	var inputCharacter CreateCharacterRequest
-	if err := c.ShouldBindJSON(&inputCharacter); err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
-		return
-	}
+func (cs *CharacterService) CreateCharacter(inputCharacter CreateCharacterRequest) (*Character, error) {
+
 	characterRepository := &CharacterRepository{}
+	animeRepository := &anime.AnimeRepository{}
+
+	err := animeRepository.CheckIDExist(inputCharacter.AnimeID)
+	if err != nil {
+		return nil, err
+	}
+
 	character, err := characterRepository.CreateCharacter(inputCharacter)
 	if err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
+		return nil, err
 	}
 
 	elasticsearchService := &elasticsearch.ElasticsearchService{}
 	characterJSON, err := json.Marshal(character)
 	if err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
+		return nil, err
 	}
 	err = elasticsearchService.InsertDocument("character_index", character.ID.String(), string(characterJSON))
 	if err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
+		return nil, err
 	}
-	// return
-	c.JSON(201, character)
+	return character, nil
 }

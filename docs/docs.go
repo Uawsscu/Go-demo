@@ -274,9 +274,6 @@ const docTemplate = `{
             "properties": {
                 "index": {
                     "type": "string"
-                },
-                "status": {
-                    "type": "string"
                 }
             }
         },

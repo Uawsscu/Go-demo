@@ -12,7 +12,6 @@ import (
 	"go-demo/internal/file_info"
 	"net/http"
 
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	"github.com/joho/godotenv"
@@ -33,14 +32,14 @@ func main() {
 	router := gin.Default()
 
 	config.SwaggerConfig(router)
-
+	router.Use(config.TraceRequest)
 	initRoutes(router)
 
-	router.Use(cors.Default())
 	router.Run(fmt.Sprintf(":%s", os.Getenv("APP_PORT")))
 }
 
 func initRoutes(eg *gin.Engine) {
+
 	eg.GET("/anime/:id", anime.GetAnimeHandler)
 	eg.GET("/anime/demoKafka", anime.TestKafkaDemoCreateHandler)
 	eg.POST("/characters/create", character.CreateCharacter)
@@ -48,4 +47,5 @@ func initRoutes(eg *gin.Engine) {
 	eg.POST("/files/uploadFileImage", file_info.UploadFileImage)
 	// r.DELETE("/anime/delete", anime.animeDELETE)
 	// r.PUT("/anime/update", anime.animeUpdate)
+
 }

@@ -2,6 +2,7 @@ package elasticsearch
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"go-demo/config"
 	"log"
@@ -26,19 +27,20 @@ func (es *ElasticsearchRepository) CreateElasticIndex(reqBody string, index stri
 	res, err := req.Do(context.Background(), config.ES)
 
 	if err != nil {
-		log.Fatalf("Error creating index: %v", err)
+		log.Printf("Error creating index: %v", err)
+		return nil, errors.New(err.Error())
 	}
 	defer res.Body.Close()
 
 	if res.IsError() {
-		log.Fatalf("Elasticsearch error: %s", res.Status())
+		log.Printf("Elasticsearch error: %s", res.Status())
+		return nil, errors.New("index is exist")
 	}
 
 	fmt.Printf("Index '%s' created successfully\n", index)
 
 	return &CreateElasticIndexResponse{
-		Index:  index,
-		Status: "success",
+		Index: index,
 	}, err
 
 }

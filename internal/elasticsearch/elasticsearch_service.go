@@ -6,13 +6,12 @@ import (
 	"strings"
 
 	"github.com/elastic/go-elasticsearch/v7/esapi"
-	"github.com/gin-gonic/gin"
 )
 
 type ElasticsearchService struct {
 }
 
-func (cs *ElasticsearchService) CreateElasticIndexCharacter(c *gin.Context) {
+func (cs *ElasticsearchService) CreateElasticIndexCharacter() (*CreateElasticIndexResponse, error) {
 	reqBody := `{
 		"settings": {
 			"number_of_shards": 1,
@@ -56,12 +55,8 @@ func (cs *ElasticsearchService) CreateElasticIndexCharacter(c *gin.Context) {
 	elasticsearchRepository := &ElasticsearchRepository{}
 
 	res, err := elasticsearchRepository.CreateElasticIndex(reqBody, "character_index")
-	if err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
-		return
-	}
 
-	c.JSON(201, res)
+	return res, err
 }
 
 func (es *ElasticsearchService) InsertDocument(index, documentID string, documentBody string) error {

@@ -26,7 +26,10 @@ func (cr *CharacterRepository) CreateCharacter(inputCharacter CreateCharacterReq
 		CreateAt:    time.Now(),
 		UpdateAt:    time.Now(),
 	}
-	config.DB.Create(&character)
+	tx := config.DB.Create(&character)
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
 	return &character, nil
 }
 

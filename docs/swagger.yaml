@@ -54,8 +54,6 @@ definitions:
     properties:
       index:
         type: string
-      status:
-        type: string
     type: object
   file_info.FileInfo:
     properties:

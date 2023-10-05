@@ -19,9 +19,10 @@ func GetAnimeHandler(c *gin.Context) {
 	fmt.Println("GetAnimeHandler start....")
 	animeService := &AnimeService{}
 	res, err := animeService.GetAnimeByID(&c.Params)
-	if err != nil || res == nil {
-		c.JSON(400, gin.H{"error": err.Error()})
+	if err != nil {
+		c.Set("error", err.Error())
 	}
+	c.Set("response", res)
 	fmt.Println("GetAnimeHandler success....")
 }
 

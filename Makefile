@@ -13,10 +13,10 @@ clean:
 # Run Main and Swagger
 .PHONY: run
 
-# run:
-# 	export PATH=$(shell go env GOPATH)/bin:$$PATH; \
-# 	swag init -g main.go -o docs; \
-# 	go run main.go
+run-main:
+	export PATH=$(shell go env GOPATH)/bin:$$PATH; \
+	swag init -g main.go -o docs; \
+	go run main.go
 
 
 run:

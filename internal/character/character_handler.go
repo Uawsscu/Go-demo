@@ -17,6 +17,13 @@ import (
 func CreateCharacter(c *gin.Context) {
 	fmt.Println("CreateCharacter start....")
 	characterService := &CharacterService{}
-	characterService.CreateCharacter(c)
+	var inputCharacter CreateCharacterRequest
+	c.ShouldBindJSON(&inputCharacter)
+	res, err := characterService.CreateCharacter(inputCharacter)
+	if err != nil {
+		c.Set("error", err.Error())
+	}
+	c.Set("response", res)
+
 	fmt.Println("CreateCharacter success....")
 }
